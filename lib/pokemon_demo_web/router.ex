@@ -17,7 +17,9 @@ defmodule PokemonDemoWeb.Router do
   scope "/", PokemonDemoWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", PokemonsLive.Index, :index
+    live "/pokemons", PokemonsLive.Index, :index
+    live "/:pokemon", PokemonLive.Index, :index
   end
 
   # Other scopes may use custom stacks.

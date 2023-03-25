@@ -1,0 +1,7 @@
+<.flash_group flash={@flash} />
+
+ <%= for album <- @results do %>
+    <div>
+      <span><%= album["name"] %></span>
+    </div>
+  <% end %>

@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :pokemon_demo, PokemonDemo.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "root",
   hostname: "localhost",
   database: "pokemon_demo_dev",
   stacktrace: true,

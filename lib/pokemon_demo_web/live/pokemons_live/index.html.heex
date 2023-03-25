@@ -1,0 +1,14 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
+  <%= for pokemon <- @pokemons do %>
+    <div class="w-50">
+      <div class="nes-container is-rounded is-dark w-full nes-pointer" style="margin: 0;">
+        <img class="w-full" src={pokemon["sprites"]["front_default"]} />
+      </div>
+      <div class="nes-container is-rounded is-dark w-full uppercase nes-pointer" style="margin: 0;">
+        <span class="block"># <%= pokemon["order"] %></span>
+        <span class="block"><%= pokemon["name"] %></span>
+        <span class="block">Experience <%= pokemon["base_experience"] %></span>
+      </div>
+    </div>
+  <% end %>
+</div>
