@@ -1,14 +1,60 @@
-<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
-  <%= for pokemon <- @pokemons do %>
-    <div class="w-50">
-      <div class="nes-container is-rounded is-dark w-full nes-pointer" style="margin: 0;">
-        <img class="w-full" src={pokemon["sprites"]["front_default"]} />
+<div class="flex items-center flex-col sm:mx-0 md:mx-0 lg:mx-32 xl:mx-32 2xl:64 mx-4">
+  <div class="flex text-2xl uppercase">
+    <%= @pokemon["name"] %> # <%= @pokemon["order"] %>
+  </div>
+  <div class="grid md:grid-cols-2 grid-cols-1 gap-4 mt-8 w-full">
+    <div class="w-full">
+      <div class="nes-container with-title is-centered w-full">
+        <img class="w-full" src={@pokemon["sprites"]["front_default"]} />
       </div>
-      <div class="nes-container is-rounded is-dark w-full uppercase nes-pointer" style="margin: 0;">
-        <span class="block"># <%= pokemon["order"] %></span>
-        <span class="block"><%= pokemon["name"] %></span>
-        <span class="block">Experience <%= pokemon["base_experience"] %></span>
+      <div class="nes-container with-title w-full mt-4 uppercase">
+        <p class="title">DESCRIPTION</p>
+        <span class="block"># <%= @pokemon["order"] %></span>
+        <span class="block">
+          <%= @pokemon["name"] %>
+        </span>
+        <span class="block">Experience <%= @pokemon["base_experience"] %></span>
+      </div>
+      <div class="mt-4">
+        TYPE
+        <div>
+          <%= for item <- @pokemon["types"] do %>
+            <div class="nes-badge">
+              <span class="is-primary">
+                <%= item["type"]["name"] %>
+              </span>
+            </div>
+            <% end %>
+        </div>
+      </div>
+      <div class="flex w-full flex-col">
+        <%= for item <- @pokemon["stats"] do %>
+          <div class="mt-2">
+            <%= item["stat"]["name"] %> %>
+              <div style="max-width: calc(100% - 10px);">
+                <progress class="nes-progress is-primary" value={item["base_stat"]} max="100">
+                </progress>
+              </div>
+          </div>
+          <% end %>
       </div>
     </div>
-  <% end %>
+    <div class="w-full">
+      <div class="nes-container with-title w-full uppercase">
+        <p class="title">HABILITIES</p>
+        <div class="lists">
+          <ul class="nes-list is-disc">
+            <%= for item <- @pokemon["moves"] do %>
+              <li>
+                <%= item["move"]["name"] %>
+              </li>
+              <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nes-container with-title is-centered w-full mt-4">
+    <p class="title">EVOLUTIONS</p>
+  </div>
 </div>

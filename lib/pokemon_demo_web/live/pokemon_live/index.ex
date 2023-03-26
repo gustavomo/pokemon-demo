@@ -3,9 +3,8 @@ defmodule PokemonDemoWeb.PokemonLive.Index do
 
   alias PokemonDemo.PokeApi
 
-  def mount(_params, _session, socket) do
-    pokemons = PokeApi.get_pokemons()
-    {:ok, assign(socket, :pokemons, pokemons)}
+  def mount(params, _session, socket) do
+    pokemon = PokeApi.get_pokemon(params["pokemon"])
+    {:ok, assign(socket, :pokemon, pokemon)}
   end
-
 end

@@ -13,7 +13,7 @@ InfiniteScroll = {
     window.addEventListener("scroll", e => {
       if(this.pending == this.page() && scrollAt() > 90){
         this.pending = this.page() + 1
-        this.pushEvent("load-albums", {})
+        this.pushEvent("load-pokemons", {})
       }
     })
   },

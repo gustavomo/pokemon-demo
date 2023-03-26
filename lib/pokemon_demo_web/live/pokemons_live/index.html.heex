@@ -1,14 +1,85 @@
-<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
+<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8" id="infinite-scroll"
+  phx-hook="InfiniteScroll" phx-update="append" data-page={@page}>
   <%= for pokemon <- @pokemons do %>
-    <div class="w-50">
-      <div class="nes-container is-rounded is-dark w-full nes-pointer" style="margin: 0;">
-        <img class="w-full" src={pokemon["sprites"]["front_default"]} />
-      </div>
-      <div class="nes-container is-rounded is-dark w-full uppercase nes-pointer" style="margin: 0;">
-        <span class="block"># <%= pokemon["order"] %></span>
-        <span class="block"><%= pokemon["name"] %></span>
-        <span class="block">Experience <%= pokemon["base_experience"] %></span>
-      </div>
+    <div class="w-50" id={"id-#{Map.get(pokemon, "order" )}"}>
+      <.link patch={pokemon["name"]}>
+        <div class="nes-container is-rounded is-dark w-full nes-pointer" style="margin: 0;">
+          <img class="w-full" src={pokemon["sprites"]["front_default"]} />
+        </div>
+      </.link>
+      <.link patch={pokemon["name"]}>
+        <div class="nes-container is-rounded is-dark w-full uppercase nes-pointer" style="margin: 0;">
+          <span class="block"># <%= pokemon["order"] %></span>
+          <span class="block">
+            <%= pokemon["name"] %>
+          </span>
+          <span class="block">Experience <%= pokemon["base_experience"] %></span>
+        </div>
+      </.link>
     </div>
-  <% end %>
+    <% end %>
 </div>
+<div class="flex justify-center my-8 w-full">
+  <div class="pixel-spinner">
+    <div class="pixel-spinner-inner"></div>
+  </div>
+</div>
+<style>
+  .pixel-spinner,
+  .pixel-spinner * {
+    box-sizing: border-box;
+  }
+
+  .pixel-spinner {
+    height: 70px;
+    width: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pixel-spinner .pixel-spinner-inner {
+    width: calc(70px / 7);
+    height: calc(70px / 7);
+    background-color: #212529;
+    color: #212529;
+    box-shadow: 15px 15px 0 0,
+      -15px -15px 0 0,
+      15px -15px 0 0,
+      -15px 15px 0 0,
+      0 15px 0 0,
+      15px 0 0 0,
+      -15px 0 0 0,
+      0 -15px 0 0;
+    animation: pixel-spinner-animation 2000ms linear infinite;
+  }
+
+  @keyframes pixel-spinner-animation {
+    50% {
+      box-shadow: 20px 20px 0px 0px,
+        -20px -20px 0px 0px,
+        20px -20px 0px 0px,
+        -20px 20px 0px 0px,
+        0px 10px 0px 0px,
+        10px 0px 0px 0px,
+        -10px 0px 0px 0px,
+        0px -10px 0px 0px;
+    }
+
+    75% {
+      box-shadow: 20px 20px 0px 0px,
+        -20px -20px 0px 0px,
+        20px -20px 0px 0px,
+        -20px 20px 0px 0px,
+        0px 10px 0px 0px,
+        10px 0px 0px 0px,
+        -10px 0px 0px 0px,
+        0px -10px 0px 0px;
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
