@@ -13,7 +13,6 @@ defmodule PokemonDemoWeb.PokemonsLive.Index do
     assigns = socket.assigns
     next_page = assigns.page + 1
     pokemons = PokeApi.get_pokemons(next_page)
-    IO.inspect(length(pokemons), label: "number records")
     {:noreply,
       socket
       |> assign(page: next_page)
