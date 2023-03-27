@@ -31,8 +31,10 @@
     </div>
   <% end %>
 </div>
+<%= if @pokemons_length != 0 do %>
 <div class="flex justify-center my-8 w-full">
   <div class="pixel-spinner">
     <div class="pixel-spinner-inner"></div>
   </div>
 </div>
+<% end %>
