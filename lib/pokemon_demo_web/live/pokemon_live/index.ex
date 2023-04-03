@@ -6,7 +6,9 @@ defmodule PokemonDemoWeb.PokemonLive.Index do
   import PokemonDemoWeb.Badge
   import PokemonDemoWeb.Card
   import PokemonDemoWeb.CloseButton
+  import PokemonDemoWeb.ContainerTitle
   import PokemonDemoWeb.CustomList
+  import PokemonDemoWeb.SimpleContainerTitle
   import PokemonDemoWeb.StatProgressBar
 
   def mount(params, _session, socket) do

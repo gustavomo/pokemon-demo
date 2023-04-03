@@ -15,15 +15,14 @@
         image_url={@pokemon["sprites"]["front_default"]}
         name={@pokemon["name"]}
         order={@pokemon["order"]}
-        style={"white"}
+        style="white"
       />
       <div class="mt-4">
-        TYPE
-        <div>
+        <.simple_container_title title="type">
           <%= for item <- @pokemon["types"] do %>
             <.badge name={item["type"]["name"]} />
           <% end %>
-        </div>
+        </.simple_container_title>
       </div>
       <div class="mt-4">
         <%= for item <- @pokemon["stats"] do %>
@@ -32,10 +31,9 @@
       </div>
     </div>
     <div class="w-full">
-      <div class="nes-container with-title w-full">
-        <p class="title">MOVES</p>
+      <.container_title title="moves">
         <.custom_list moves={@pokemon["moves"]} />
-      </div>
+      </.container_title>
     </div>
   </div>
 </div>
