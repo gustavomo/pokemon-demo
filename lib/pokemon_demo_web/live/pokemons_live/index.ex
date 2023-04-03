@@ -3,6 +3,9 @@ defmodule PokemonDemoWeb.PokemonsLive.Index do
 
   alias PokemonDemo.PokeApi
 
+  import PokemonDemoWeb.Card
+  import PokemonDemoWeb.Spinner
+
   def mount(_params, _session, socket) do
     page = 0
     pokemons = PokeApi.get_pokemons(page)
